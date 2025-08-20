@@ -1,0 +1,18 @@
+services:
+  sdxl-turbo-runtime:
+    image: soulteary/sdxl-turbo-runtime
+    command: python app.py
+    ports:
+      - "7860:7860"
+      - "7680:7680"
+      - "8080:8080"
+    volumes:
+      - /data/img2img/ai-img2img:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    ipc: host
+    ulimits:
+      memlock: -1
